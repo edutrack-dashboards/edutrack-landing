@@ -21,9 +21,9 @@ const stats = [
   },
   {
     icon: Award,
-    value: "A+",
-    label: "Stack Quality",
-    description: "Next.js + Supabase",
+    value: "All-in-One",
+    label: "EduTrack Project",
+    description: "A unified platform connecting school teams, families, and students",
   },
 ];
 
