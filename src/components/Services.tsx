@@ -199,7 +199,8 @@ const services: Omit<ServiceCardProps, "index">[] = [
       "Stay connected to your child's education. Monitor attendance, view grades, receive teacher updates, and communicate directly with the school.",
     icon: Users,
     color: "purple",
-    status: "coming-soon",
+    status: "live",
+    url: "https://edutrack-parent.vercel.app/login",
     features: [
       { icon: TrendingUp, text: "Real-time progress tracking" },
       { icon: ClipboardList, text: "Attendance & absence alerts" },
