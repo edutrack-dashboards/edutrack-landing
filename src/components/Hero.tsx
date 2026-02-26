@@ -65,7 +65,7 @@ export default function Hero() {
               { icon: BarChart3, label: "Management", color: "blue", count: "Live" },
               { icon: BookOpen, label: "Teacher", color: "emerald", count: "Live" },
               { icon: Users, label: "Parent", color: "purple", count: "Soon" },
-              { icon: GraduationCap, label: "Student", color: "amber", count: "Soon" },
+              { icon: GraduationCap, label: "Student", color: "amber", count: "Live" },
             ].map((item, i) => (
               <div
                 key={item.label}

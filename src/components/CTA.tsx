@@ -24,7 +24,7 @@ export default function CTA() {
             </h2>
             <p className="mt-4 text-lg leading-8 text-blue-100">
               Join the next generation of school management. Start with our live portals today and be
-              first in line when Parent and Student portals launch.
+              first in line when the Parent portal launches.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a

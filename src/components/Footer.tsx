@@ -2,10 +2,10 @@ import { GraduationCap } from "lucide-react";
 
 const footerLinks = {
   Platform: [
-    { label: "Management Portal", href: "#services" },
-    { label: "Teacher Portal", href: "#services" },
+    { label: "Management Portal", href: "https://edutrack-manager.vercel.app/" },
+    { label: "Teacher Portal", href: "https://edutrack-teacher.vercel.app/login" },
     { label: "Parent Portal", href: "#services" },
-    { label: "Student Portal", href: "#services" },
+    { label: "Student Portal", href: "https://edutrack-student.vercel.app/login" },
   ],
   Resources: [
     { label: "Features", href: "#features" },

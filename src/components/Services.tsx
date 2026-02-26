@@ -24,6 +24,7 @@ interface ServiceCardProps {
   color: "blue" | "emerald" | "purple" | "amber";
   features: { icon: React.ElementType; text: string }[];
   status: "live" | "coming-soon";
+  url?: string;
   index: number;
 }
 
@@ -74,7 +75,7 @@ const colorMap = {
   },
 };
 
-function ServiceCard({ title, subtitle, description, icon: Icon, color, features, status }: ServiceCardProps) {
+function ServiceCard({ title, subtitle, description, icon: Icon, color, features, status, url }: ServiceCardProps) {
   const c = colorMap[color];
 
   return (
@@ -137,12 +138,15 @@ function ServiceCard({ title, subtitle, description, icon: Icon, color, features
         {/* Action */}
         <div className="mt-6">
           {status === "live" ? (
-            <button
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`inline-flex items-center gap-2 rounded-lg bg-gradient-to-r ${c.gradient} px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:shadow-lg hover:brightness-110`}
             >
               Open Dashboard
               <ArrowRight className="h-4 w-4" />
-            </button>
+            </a>
           ) : (
             <div className="flex items-center gap-2 rounded-lg border border-dashed border-slate-300 bg-slate-50 px-5 py-2.5 text-sm font-medium text-slate-400">
               <Bell className="h-4 w-4" />
@@ -164,6 +168,7 @@ const services: Omit<ServiceCardProps, "index">[] = [
     icon: BarChart3,
     color: "blue",
     status: "live",
+    url: "https://edutrack-manager.vercel.app/",
     features: [
       { icon: School, text: "Class & section management" },
       { icon: UserCheck, text: "Teacher assignment & profiles" },
@@ -179,6 +184,7 @@ const services: Omit<ServiceCardProps, "index">[] = [
     icon: BookOpen,
     color: "emerald",
     status: "live",
+    url: "https://edutrack-teacher.vercel.app/login",
     features: [
       { icon: ClipboardList, text: "Attendance tracking per class" },
       { icon: FileText, text: "Grades, exams & report cards" },
@@ -208,7 +214,8 @@ const services: Omit<ServiceCardProps, "index">[] = [
       "A personal hub for every student. Access assignments, check grades, view your schedule, and stay organized throughout the school year.",
     icon: GraduationCap,
     color: "amber",
-    status: "coming-soon",
+    status: "live",
+    url: "https://edutrack-student.vercel.app/login",
     features: [
       { icon: FileText, text: "Assignments & homework tracker" },
       { icon: TrendingUp, text: "Grade history & GPA overview" },
