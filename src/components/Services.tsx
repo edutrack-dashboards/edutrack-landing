@@ -1,19 +1,17 @@
 import {
+  ArrowUpRight,
   BarChart3,
-  BookOpen,
-  Users,
-  GraduationCap,
-  ClipboardList,
-  UserCheck,
-  School,
-  Calendar,
-  MessageSquare,
-  TrendingUp,
   Bell,
+  BookOpen,
+  Calendar,
+  ClipboardList,
   FileText,
-  CheckCircle2,
-  Clock,
-  ArrowRight,
+  GraduationCap,
+  MessageSquare,
+  School,
+  TrendingUp,
+  UserCheck,
+  Users,
 } from "lucide-react";
 
 interface ServiceCardProps {
@@ -21,141 +19,98 @@ interface ServiceCardProps {
   subtitle: string;
   description: string;
   icon: React.ElementType;
-  color: "blue" | "emerald" | "purple" | "amber";
+  color: "teal" | "cyan" | "amber" | "slate";
   features: { icon: React.ElementType; text: string }[];
-  status: "live" | "coming-soon";
-  url?: string;
+  url: string;
   index: number;
 }
 
 const colorMap = {
-  blue: {
-    gradient: "from-blue-600 to-indigo-600",
-    bg: "bg-blue-50",
-    border: "border-blue-200",
-    iconBg: "bg-blue-100",
-    iconText: "text-blue-600",
-    badge: "bg-blue-100 text-blue-700",
-    ring: "ring-blue-500/20",
-    shadow: "shadow-blue-500/10",
-    hoverShadow: "hover:shadow-blue-500/20",
+  teal: {
+    border: "border-teal-200",
+    iconWrap: "bg-teal-100 text-teal-700",
+    chip: "bg-teal-100 text-teal-700",
+    badge: "bg-teal-600",
+    button: "bg-teal-700 hover:bg-teal-800",
   },
-  emerald: {
-    gradient: "from-emerald-600 to-teal-600",
-    bg: "bg-emerald-50",
-    border: "border-emerald-200",
-    iconBg: "bg-emerald-100",
-    iconText: "text-emerald-600",
-    badge: "bg-emerald-100 text-emerald-700",
-    ring: "ring-emerald-500/20",
-    shadow: "shadow-emerald-500/10",
-    hoverShadow: "hover:shadow-emerald-500/20",
-  },
-  purple: {
-    gradient: "from-purple-600 to-violet-600",
-    bg: "bg-purple-50",
-    border: "border-purple-200",
-    iconBg: "bg-purple-100",
-    iconText: "text-purple-600",
-    badge: "bg-purple-100 text-purple-700",
-    ring: "ring-purple-500/20",
-    shadow: "shadow-purple-500/10",
-    hoverShadow: "hover:shadow-purple-500/20",
+  cyan: {
+    border: "border-cyan-200",
+    iconWrap: "bg-cyan-100 text-cyan-700",
+    chip: "bg-cyan-100 text-cyan-700",
+    badge: "bg-cyan-600",
+    button: "bg-cyan-700 hover:bg-cyan-800",
   },
   amber: {
-    gradient: "from-amber-500 to-orange-500",
-    bg: "bg-amber-50",
     border: "border-amber-200",
-    iconBg: "bg-amber-100",
-    iconText: "text-amber-600",
-    badge: "bg-amber-100 text-amber-700",
-    ring: "ring-amber-500/20",
-    shadow: "shadow-amber-500/10",
-    hoverShadow: "hover:shadow-amber-500/20",
+    iconWrap: "bg-amber-100 text-amber-700",
+    chip: "bg-amber-100 text-amber-700",
+    badge: "bg-amber-600",
+    button: "bg-amber-600 hover:bg-amber-700",
+  },
+  slate: {
+    border: "border-slate-300",
+    iconWrap: "bg-slate-200 text-slate-700",
+    chip: "bg-slate-200 text-slate-700",
+    badge: "bg-slate-600",
+    button: "bg-slate-700 hover:bg-slate-800",
   },
 };
 
-function ServiceCard({ title, subtitle, description, icon: Icon, color, features, status, url }: ServiceCardProps) {
+const motionClasses = ["animate-rise", "animate-rise-delay-1", "animate-rise-delay-2", "animate-rise-delay-3"];
+
+function ServiceCard({
+  title,
+  subtitle,
+  description,
+  icon: Icon,
+  color,
+  features,
+  url,
+  index,
+}: ServiceCardProps) {
   const c = colorMap[color];
 
   return (
-    <div
-      className={`group relative overflow-hidden rounded-2xl border bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${c.shadow} ${c.hoverShadow} ${
-        status === "coming-soon" ? "border-slate-200" : c.border
-      }`}
-    >
-      {/* Decorative gradient blob */}
-      <div
-        className={`absolute -top-16 -right-16 h-40 w-40 rounded-full bg-gradient-to-br ${c.gradient} opacity-[0.06] transition-all duration-500 group-hover:scale-150 group-hover:opacity-[0.10]`}
-      />
+    <article className={`group relative overflow-hidden rounded-2xl border bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${c.border} ${motionClasses[index % motionClasses.length]}`}>
+      <div className="absolute right-0 top-0 h-20 w-20 rounded-bl-3xl bg-slate-100/70" />
+      <div className={`absolute left-0 top-0 h-1.5 w-full ${c.badge}`} />
 
       <div className="relative">
-        {/* Header */}
-        <div className="flex items-start justify-between">
-          <div
-            className={`inline-flex h-12 w-12 items-center justify-center rounded-xl ${c.iconBg} ${c.iconText}`}
-          >
+        <div className="flex items-start justify-between gap-3">
+          <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl ${c.iconWrap}`}>
             <Icon className="h-6 w-6" />
           </div>
-          <span
-            className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ${
-              status === "live"
-                ? "bg-emerald-100 text-emerald-700"
-                : "bg-slate-100 text-slate-500"
-            }`}
-          >
-            {status === "live" ? (
-              <>
-                <CheckCircle2 className="h-3 w-3" />
-                Live
-              </>
-            ) : (
-              <>
-                <Clock className="h-3 w-3" />
-                Coming Soon
-              </>
-            )}
+          <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-700">
+            live
           </span>
         </div>
 
-        {/* Title */}
-        <h3 className="mt-4 text-xl font-bold text-slate-900">{title}</h3>
-        <p className={`mt-0.5 text-sm font-medium ${c.iconText}`}>{subtitle}</p>
+        <h3 className="mt-5 text-2xl font-bold tracking-tight text-slate-900">{title}</h3>
+        <p className="mt-1 text-sm font-semibold text-slate-600">{subtitle}</p>
         <p className="mt-3 text-sm leading-relaxed text-slate-600">{description}</p>
 
-        {/* Features list */}
-        <ul className="mt-5 space-y-2.5">
-          {features.map((f) => (
-            <li key={f.text} className="flex items-center gap-3 text-sm text-slate-700">
-              <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${c.iconBg} ${c.iconText}`}>
-                <f.icon className="h-3.5 w-3.5" />
+        <ul className="mt-5 grid gap-2">
+          {features.map((feature) => (
+            <li key={feature.text} className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700">
+              <div className={`flex h-7 w-7 items-center justify-center rounded-md ${c.chip}`}>
+                <feature.icon className="h-3.5 w-3.5" />
               </div>
-              {f.text}
+              <span>{feature.text}</span>
             </li>
           ))}
         </ul>
 
-        {/* Action */}
-        <div className="mt-6">
-          {status === "live" ? (
-            <a
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 rounded-lg bg-gradient-to-r ${c.gradient} px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:shadow-lg hover:brightness-110`}
-            >
-              Open Dashboard
-              <ArrowRight className="h-4 w-4" />
-            </a>
-          ) : (
-            <div className="flex items-center gap-2 rounded-lg border border-dashed border-slate-300 bg-slate-50 px-5 py-2.5 text-sm font-medium text-slate-400">
-              <Bell className="h-4 w-4" />
-              Notify me when available
-            </div>
-          )}
-        </div>
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`mt-6 inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-white transition-colors ${c.button}`}
+        >
+          Open portal
+          <ArrowUpRight className="h-4 w-4" />
+        </a>
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -164,94 +119,83 @@ const services: Omit<ServiceCardProps, "index">[] = [
     title: "EduTrack Management",
     subtitle: "For School Administrators",
     description:
-      "A comprehensive dashboard to oversee your entire school. Manage classes, assign teachers, enroll students, and generate insightful reports — all in one place.",
+      "Oversee classes, teachers, and students from one command center with school-wide insights.",
     icon: BarChart3,
-    color: "blue",
-    status: "live",
+    color: "teal",
     url: "https://edutrack-manager.vercel.app/",
     features: [
-      { icon: School, text: "Class & section management" },
-      { icon: UserCheck, text: "Teacher assignment & profiles" },
-      { icon: Users, text: "Student enrollment & records" },
-      { icon: TrendingUp, text: "School-wide analytics & reports" },
+      { icon: School, text: "Class and section management" },
+      { icon: UserCheck, text: "Teacher assignment and profiles" },
+      { icon: Users, text: "Student enrollment and records" },
+      { icon: TrendingUp, text: "Performance and compliance reporting" },
     ],
   },
   {
     title: "EduTrack Teacher",
     subtitle: "For Educators",
     description:
-      "Everything a teacher needs to manage their classroom efficiently. Take attendance, enter grades, manage schedules, and communicate — from any device.",
+      "Run classroom operations efficiently with attendance, grading, scheduling, and communication tools.",
     icon: BookOpen,
-    color: "emerald",
-    status: "live",
+    color: "cyan",
     url: "https://edutrack-teacher.vercel.app/login",
     features: [
-      { icon: ClipboardList, text: "Attendance tracking per class" },
-      { icon: FileText, text: "Grades, exams & report cards" },
-      { icon: Calendar, text: "Class schedule management" },
-      { icon: MessageSquare, text: "Messaging & announcements" },
+      { icon: ClipboardList, text: "Attendance tracking by class" },
+      { icon: FileText, text: "Exams and grade publishing" },
+      { icon: Calendar, text: "Daily and weekly schedules" },
+      { icon: MessageSquare, text: "Parent and student messaging" },
     ],
   },
   {
     title: "EduTrack Parent",
-    subtitle: "For Parents & Guardians",
+    subtitle: "For Parents and Guardians",
     description:
-      "Stay connected to your child's education. Monitor attendance, view grades, receive teacher updates, and communicate directly with the school.",
+      "Stay informed with real-time progress, attendance alerts, schedules, and direct communication with school staff.",
     icon: Users,
-    color: "purple",
-    status: "live",
+    color: "amber",
     url: "https://edutrack-parent.vercel.app/login",
     features: [
-      { icon: TrendingUp, text: "Real-time progress tracking" },
-      { icon: ClipboardList, text: "Attendance & absence alerts" },
-      { icon: MessageSquare, text: "Direct teacher communication" },
-      { icon: Bell, text: "Push notifications & updates" },
+      { icon: TrendingUp, text: "Progress view across all children" },
+      { icon: ClipboardList, text: "Attendance rates and alerts" },
+      { icon: MessageSquare, text: "Teacher communication channel" },
+      { icon: Bell, text: "Instant updates and notifications" },
     ],
   },
   {
     title: "EduTrack Student",
     subtitle: "For Students",
     description:
-      "A personal hub for every student. Access assignments, check grades, view your schedule, and stay organized throughout the school year.",
+      "Give students one focused space for class schedules, assignments, grades, and personal performance tracking.",
     icon: GraduationCap,
-    color: "amber",
-    status: "live",
+    color: "slate",
     url: "https://edutrack-student.vercel.app/login",
     features: [
-      { icon: FileText, text: "Assignments & homework tracker" },
-      { icon: TrendingUp, text: "Grade history & GPA overview" },
+      { icon: FileText, text: "Assignment and coursework tracking" },
+      { icon: TrendingUp, text: "Grade trends and performance" },
       { icon: Calendar, text: "Personal class schedule" },
-      { icon: BookOpen, text: "Learning resources & materials" },
+      { icon: BookOpen, text: "Centralized learning resources" },
     ],
   },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="relative bg-slate-50/50 py-24 sm:py-32">
-      {/* Background decoration */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-0 left-1/4 h-64 w-64 rounded-full bg-blue-100/30 blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 h-64 w-64 rounded-full bg-purple-100/30 blur-3xl" />
-      </div>
+    <section id="services" className="relative py-24 sm:py-28">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-teal-50/60 to-transparent" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section header */}
         <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-indigo-100 px-4 py-1.5 text-sm font-medium text-indigo-700">
-            Our Platform
+          <span className="inline-flex items-center gap-2 rounded-full bg-teal-100 px-4 py-1.5 text-sm font-semibold text-teal-800">
+            Live Platform Suite
           </span>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-            Built for Every Role in School
+            Four specialized portals. One shared source of truth.
           </h2>
           <p className="mt-4 text-lg leading-8 text-slate-600">
-            Four specialized portals designed to serve the unique needs of administrators,
-            teachers, parents, and students.
+            Every role gets a focused workspace while staying synchronized with the rest of the school.
           </p>
         </div>
 
-        {/* Service cards grid */}
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:gap-8">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:gap-7">
           {services.map((service, index) => (
             <ServiceCard key={service.title} {...service} index={index} />
           ))}

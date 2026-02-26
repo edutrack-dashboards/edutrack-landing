@@ -1,119 +1,92 @@
-import { BarChart3, BookOpen, Users, GraduationCap, ArrowDown } from "lucide-react";
+import { BarChart3, BookOpen, GraduationCap, Users } from "lucide-react";
 
 const steps = [
   {
-    step: "1",
     icon: BarChart3,
-    title: "Admin Sets Up the School",
+    title: "Admin configures operations",
     description:
-      "School administrators create classes, assign teachers, and enroll students using the Management portal.",
-    color: "blue" as const,
+      "Management teams set classes, enroll students, and assign teachers with complete structural control.",
+    color: "bg-teal-600",
+    panel: "border-teal-200 bg-teal-50/70",
   },
   {
-    step: "2",
     icon: BookOpen,
-    title: "Teachers Run the Classroom",
+    title: "Teachers run classroom execution",
     description:
-      "Teachers take attendance, enter grades, manage their schedule, and communicate with parents.",
-    color: "emerald" as const,
+      "Attendance, assessments, and class updates are recorded once and published instantly.",
+    color: "bg-cyan-600",
+    panel: "border-cyan-200 bg-cyan-50/70",
   },
   {
-    step: "3",
     icon: Users,
-    title: "Parents Stay Informed",
+    title: "Parents receive live visibility",
     description:
-      "Parents receive real-time updates on attendance, grades, and can message teachers directly.",
-    color: "purple" as const,
+      "Families monitor attendance, grades, schedules, and progress without chasing updates.",
+    color: "bg-amber-500",
+    panel: "border-amber-200 bg-amber-50/70",
   },
   {
-    step: "4",
     icon: GraduationCap,
-    title: "Students Take Ownership",
+    title: "Students stay aligned daily",
     description:
-      "Students access their assignments, check grades, view schedules, and track their own progress.",
-    color: "amber" as const,
+      "Learners track class expectations, deadlines, and academic performance in one place.",
+    color: "bg-slate-700",
+    panel: "border-slate-300 bg-slate-100",
   },
 ];
 
-const colorMap = {
-  blue: {
-    bg: "bg-blue-100",
-    text: "text-blue-600",
-    ring: "ring-blue-600/20",
-    line: "bg-blue-600",
-  },
-  emerald: {
-    bg: "bg-emerald-100",
-    text: "text-emerald-600",
-    ring: "ring-emerald-600/20",
-    line: "bg-emerald-600",
-  },
-  purple: {
-    bg: "bg-purple-100",
-    text: "text-purple-600",
-    ring: "ring-purple-600/20",
-    line: "bg-purple-600",
-  },
-  amber: {
-    bg: "bg-amber-100",
-    text: "text-amber-600",
-    ring: "ring-amber-600/20",
-    line: "bg-amber-600",
-  },
-};
-
 export default function Workflow() {
   return (
-    <section className="bg-slate-50/50 py-24 sm:py-32">
+    <section id="workflow" className="py-24 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section header */}
         <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-purple-100 px-4 py-1.5 text-sm font-medium text-purple-700">
-            How It Works
+          <span className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-4 py-1.5 text-sm font-semibold text-amber-800">
+            Cross-Portal Workflow
           </span>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-            A Connected Workflow
+            One action in one portal updates everyone else.
           </h2>
           <p className="mt-4 text-lg leading-8 text-slate-600">
-            Data flows seamlessly from administration to the classroom and beyond.
+            EduTrack removes manual handoffs by connecting every school role through shared, real-time data.
           </p>
         </div>
 
-        {/* Steps */}
-        <div className="mx-auto mt-16 max-w-2xl space-y-0">
-          {steps.map((step, index) => {
-            const c = colorMap[step.color];
-            return (
-              <div key={step.step}>
-                <div className="flex gap-5">
-                  {/* Step number and line */}
-                  <div className="flex flex-col items-center">
-                    <div
-                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full ${c.bg} ${c.text} ring-4 ${c.ring} text-lg font-bold`}
-                    >
+        <div className="mt-14">
+          <div className="relative hidden lg:block">
+            <div className="absolute left-0 right-0 top-8 h-0.5 bg-slate-300" />
+            <div className="grid grid-cols-4 gap-6">
+              {steps.map((step, index) => (
+                <article key={step.title} className="relative">
+                  <div className={`absolute left-1/2 top-7 h-3.5 w-3.5 -translate-x-1/2 rounded-full ${step.color}`} />
+                  <div className={`mt-14 rounded-2xl border p-5 ${step.panel}`}>
+                    <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-slate-800 shadow-sm">
                       <step.icon className="h-5 w-5" />
                     </div>
-                    {index < steps.length - 1 && (
-                      <div className="mt-2 h-full w-0.5 bg-gradient-to-b from-slate-300 to-slate-200" />
-                    )}
-                  </div>
-
-                  {/* Content */}
-                  <div className="pb-12">
-                    <div className="flex items-center gap-3">
-                      <span className={`text-xs font-bold uppercase tracking-wider ${c.text}`}>
-                        Step {step.step}
-                      </span>
-                    </div>
+                    <p className="text-xs font-mono uppercase tracking-wider text-slate-500">Step {index + 1}</p>
                     <h3 className="mt-1 text-lg font-bold text-slate-900">{step.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                      {step.description}
-                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-700">{step.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-4 lg:hidden">
+            {steps.map((step, index) => (
+              <article key={step.title} className={`rounded-2xl border p-5 ${step.panel}`}>
+                <div className="flex items-start gap-4">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-slate-800 shadow-sm">
+                    <step.icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-mono uppercase tracking-wider text-slate-500">Step {index + 1}</p>
+                    <h3 className="mt-1 text-lg font-bold text-slate-900">{step.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-700">{step.description}</p>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

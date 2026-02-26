@@ -1,44 +1,41 @@
-import { ArrowRight, GraduationCap } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function CTA() {
   return (
-    <section className="py-24 sm:py-32">
+    <section className="py-24 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 px-8 py-16 shadow-2xl shadow-blue-500/20 sm:px-16 sm:py-24">
-          {/* Background decoration */}
-          <div className="pointer-events-none absolute inset-0 opacity-20">
-            <div className="absolute top-0 left-0 h-full w-full" style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.2) 1px, transparent 0)`,
-              backgroundSize: '32px 32px',
-            }} />
-          </div>
-          <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+        <div className="relative overflow-hidden rounded-3xl border border-teal-200 bg-gradient-to-br from-teal-700 via-teal-800 to-slate-900 px-7 py-14 shadow-2xl shadow-teal-900/20 sm:px-12 sm:py-16">
+          <div className="noise-overlay" />
+          <div className="pointer-events-none absolute -right-20 top-0 h-64 w-64 rounded-full bg-amber-300/20 blur-3xl" />
+          <div className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-cyan-300/15 blur-3xl" />
 
-          <div className="relative mx-auto max-w-2xl text-center">
-            <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm">
-              <GraduationCap className="h-7 w-7 text-white" />
+          <div className="relative mx-auto max-w-3xl text-center">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-sm font-semibold text-teal-100">
+              <Sparkles className="h-4 w-4" />
+              Production-ready portals
             </div>
+
             <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-              Ready to Transform Your School?
+              Launch EduTrack across your school this week.
             </h2>
-            <p className="mt-4 text-lg leading-8 text-blue-100">
-              Join the next generation of school management. Start with our live portals today,
-              including the Parent portal now available.
+            <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-teal-100">
+              All four role portals are live and connected. Start with the portal your team needs most,
+              then expand to full-school rollout.
             </p>
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+
+            <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
                 href="#services"
-                className="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-3.5 text-base font-semibold text-blue-700 shadow-lg transition-all hover:bg-blue-50 hover:shadow-xl"
+                className="inline-flex items-center gap-2 rounded-xl bg-white px-7 py-3.5 text-base font-semibold text-teal-800 transition-colors hover:bg-teal-50"
               >
-                Get Started Now
+                Open all portal links
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
-                href="#about"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-8 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-all hover:border-white/50 hover:bg-white/10"
+                href="#workflow"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-white/10"
               >
-                Learn More
+                Review implementation flow
               </a>
             </div>
           </div>
