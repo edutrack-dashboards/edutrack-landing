@@ -1,54 +1,54 @@
 import {
-  CloudUpload,
-  Globe,
+  ClipboardCheck,
+  GraduationCap,
   LayoutDashboard,
-  Lock,
+  MessageSquare,
   RefreshCw,
   Shield,
   Smartphone,
-  Zap,
+  Users,
 } from "lucide-react";
 
 const features = [
   {
     icon: LayoutDashboard,
     title: "Role-focused dashboards",
-    description: "Each user lands on a workspace tuned to their priorities and decisions.",
+    description: "Managers, teachers, parents, and students each get a personalized home screen showing exactly what matters to them.",
   },
   {
-    icon: Zap,
-    title: "Real-time publication",
-    description: "Attendance, grades, and messages appear across relevant portals instantly.",
+    icon: ClipboardCheck,
+    title: "Attendance in one click",
+    description: "Teachers mark attendance once per class. Parents and students see updates immediately on their own portals.",
   },
   {
-    icon: Smartphone,
-    title: "Mobile-ready by default",
-    description: "Every screen is optimized for desktop, tablet, and mobile from day one.",
+    icon: GraduationCap,
+    title: "Complete grade management",
+    description: "Create exams, enter scores, assign letter grades, and publish results — parents and students see them instantly.",
+  },
+  {
+    icon: MessageSquare,
+    title: "Built-in messaging",
+    description: "Teachers and parents communicate directly through the platform with message threads and unread notifications.",
   },
   {
     icon: Shield,
-    title: "Scoped access controls",
-    description: "Permissions are enforced by role so users only see what they should.",
-  },
-  {
-    icon: Lock,
-    title: "Secure architecture",
-    description: "Built on Supabase auth and row-level security for defense-in-depth data access.",
+    title: "Role-based access",
+    description: "Each user only sees what they should. Teachers see their classes, parents see their children, students see their own data.",
   },
   {
     icon: RefreshCw,
     title: "Seamless data handoff",
-    description: "No duplicate data entry between teams, classrooms, and families.",
+    description: "No duplicate data entry. Managers set up classes once, and the data flows to teachers, parents, and students automatically.",
   },
   {
-    icon: Globe,
-    title: "Scales across campuses",
-    description: "The structure supports growth from a single school to larger organizations.",
+    icon: Users,
+    title: "Multi-child support",
+    description: "Parents with multiple children can switch between them and view grades, attendance, and schedules for each child.",
   },
   {
-    icon: CloudUpload,
-    title: "Cloud-native delivery",
-    description: "Always current, easy to deploy, and available anywhere with no installs.",
+    icon: Smartphone,
+    title: "Mobile-ready by default",
+    description: "Every portal is fully responsive with dedicated mobile navigation, so users can check in from any device.",
   },
 ];
 

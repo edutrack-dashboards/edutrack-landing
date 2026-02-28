@@ -1,29 +1,29 @@
-import { Award, BookOpen, School, Users } from "lucide-react";
+import { ClipboardCheck, GraduationCap, MessageSquare, Users } from "lucide-react";
 
 const stats = [
   {
-    icon: School,
-    value: "4",
-    label: "Live Portals",
-    description: "Management, Teacher, Parent, Student",
-  },
-  {
     icon: Users,
-    value: "100%",
-    label: "Role Coverage",
-    description: "Everyone in the school loop",
+    value: "4 Portals",
+    label: "Every Role Covered",
+    description: "Dedicated dashboards for managers, teachers, parents, and students",
   },
   {
-    icon: BookOpen,
-    value: "Real-Time",
-    label: "Data Flow",
-    description: "Operational updates without lag",
+    icon: GraduationCap,
+    value: "Grades",
+    label: "Full Exam Lifecycle",
+    description: "From exam creation to score entry to published report cards",
   },
   {
-    icon: Award,
-    value: "All-in-One",
-    label: "EduTrack Project",
-    description: "A unified platform connecting school teams, families, and students",
+    icon: ClipboardCheck,
+    value: "Attendance",
+    label: "Daily Tracking",
+    description: "Present, absent, late, and excused — visible across all portals",
+  },
+  {
+    icon: MessageSquare,
+    value: "Messaging",
+    label: "Direct Communication",
+    description: "Threaded conversations between teachers and parents with notifications",
   },
 ];
 
@@ -40,11 +40,11 @@ export default function Stats() {
               <div>
                 <p className="text-sm font-semibold uppercase tracking-widest text-teal-200">About EduTrack</p>
                 <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
-                  One ecosystem for school execution and family visibility.
+                  Everything your school needs, connected in one platform.
                 </h2>
                 <p className="mt-4 max-w-xl text-base leading-7 text-slate-200">
-                  EduTrack keeps institutional operations and classroom activity aligned so schools run
-                  faster and communication stays transparent.
+                  From class setup and student enrollment to daily attendance, exam grading, and parent
+                  communication — EduTrack handles it all so nothing falls through the cracks.
                 </p>
               </div>
 
