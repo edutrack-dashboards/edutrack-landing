@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ArrowRight,
   BarChart3,
@@ -7,39 +9,50 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
-const portalPreview = [
-  {
-    icon: BarChart3,
-    label: "Management",
-    status: "Live",
-    tone: "bg-cyan-50 text-cyan-700",
-    motion: "animate-rise-delay-1",
-  },
-  {
-    icon: BookOpen,
-    label: "Teacher",
-    status: "Live",
-    tone: "bg-emerald-50 text-emerald-700",
-    motion: "animate-rise-delay-2",
-  },
-  {
-    icon: Users,
-    label: "Parent",
-    status: "Live",
-    tone: "bg-amber-50 text-amber-700",
-    motion: "animate-rise-delay-3",
-  },
-  {
-    icon: GraduationCap,
-    label: "Student",
-    status: "Live",
-    tone: "bg-slate-100 text-slate-700",
-    motion: "animate-rise-delay-3",
-  },
-];
+interface HeroProps {
+  loaded?: boolean;
+}
 
-export default function Hero() {
+export default function Hero({ loaded = false }: HeroProps) {
+  const { t } = useI18n();
+
+  const portalPreview = [
+    {
+      icon: BarChart3,
+      label: t.hero.portalManagement,
+      status: t.hero.live,
+      tone: "bg-cyan-50 text-cyan-700",
+    },
+    {
+      icon: BookOpen,
+      label: t.hero.portalTeacher,
+      status: t.hero.live,
+      tone: "bg-emerald-50 text-emerald-700",
+    },
+    {
+      icon: Users,
+      label: t.hero.portalParent,
+      status: t.hero.live,
+      tone: "bg-amber-50 text-amber-700",
+    },
+    {
+      icon: GraduationCap,
+      label: t.hero.portalStudent,
+      status: t.hero.live,
+      tone: "bg-slate-100 text-slate-700",
+    },
+  ];
+
+  const base = "transition-all ease-out";
+  const hidden = "translate-y-8 opacity-0";
+  const shown = "translate-y-0 opacity-100";
+  const s = (delayMs: number) =>
+    `${base} ${loaded ? shown : hidden}` +
+    ` duration-700` +
+    (delayMs ? ` delay-[${delayMs}ms]` : "");
+
   return (
     <section className="section-shell relative overflow-hidden pt-28 sm:pt-32">
       <div className="noise-overlay" />
@@ -48,43 +61,56 @@ export default function Hero() {
 
       <div className="relative mx-auto grid max-w-7xl gap-12 px-4 pb-20 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14 lg:px-8 lg:pb-28">
         <div className="space-y-7">
-          <div className="animate-rise inline-flex items-center gap-2 rounded-full border border-teal-200 bg-teal-50 px-4 py-1.5 text-sm font-semibold text-teal-800">
-            <Sparkles className="h-4 w-4" />
-            Now with all 4 portals live
+          {/* Badge */}
+          <div className={`hero-reveal hero-reveal-1 ${loaded ? "revealed" : ""}`}>
+            <div className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-teal-50 px-4 py-1.5 text-sm font-semibold text-teal-800">
+              <Sparkles className="h-4 w-4" />
+              {t.hero.badge}
+            </div>
           </div>
 
+          {/* Title — word by word */}
           <div className="space-y-5">
-            <h1 className="animate-rise-delay-1 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-              Beautifully connected school operations, from office to family.
+            <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+              {t.hero.title.split(" ").map((word, i) => (
+                <span
+                  key={i}
+                  className={`hero-word ${loaded ? "revealed" : ""}`}
+                  style={{ transitionDelay: `${200 + i * 80}ms` }}
+                >
+                  {word}{" "}
+                </span>
+              ))}
             </h1>
-            <p className="animate-rise-delay-2 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">
-              EduTrack brings administrators, teachers, parents, and students
-              into one coordinated workflow so every attendance mark, grade
-              update, and message moves instantly.
+            <p className={`hero-reveal hero-reveal-3 ${loaded ? "revealed" : ""} max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl`}>
+              {t.hero.subtitle}
             </p>
           </div>
 
-          <div className="animate-rise-delay-3 flex flex-col gap-3 sm:flex-row sm:items-center">
+          {/* CTAs */}
+          <div className={`hero-reveal hero-reveal-4 ${loaded ? "revealed" : ""} flex flex-col gap-3 sm:flex-row sm:items-center`}>
             <a
               href="#services"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-teal-700 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-teal-900/15 transition-colors hover:bg-teal-800"
             >
-              Explore live portals
+              {t.hero.exploreCta}
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href="#workflow"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-7 py-3.5 text-base font-semibold text-slate-700 transition-colors hover:bg-slate-50"
             >
-              See workflow
+              {t.hero.workflowCta}
             </a>
           </div>
 
+          {/* Portal cards */}
           <div className="grid gap-3 sm:grid-cols-2 lg:max-w-2xl lg:grid-cols-4">
-            {portalPreview.map((item) => (
+            {portalPreview.map((item, i) => (
               <div
                 key={item.label}
-                className={`glass-panel rounded-xl p-3.5 ${item.motion}`}
+                className={`hero-reveal ${loaded ? "revealed" : ""} glass-panel rounded-xl p-3.5`}
+                style={{ transitionDelay: `${600 + i * 100}ms` }}
               >
                 <div
                   className={`mb-2 inline-flex rounded-lg px-2.5 py-1 text-xs font-semibold ${item.tone}`}
@@ -100,55 +126,43 @@ export default function Hero() {
           </div>
         </div>
 
+        {/* Right panel */}
         <div className="relative">
-          <div className="glass-panel animate-rise rounded-3xl p-6 shadow-xl shadow-slate-900/10 sm:p-8">
+          <div className={`hero-reveal hero-reveal-panel ${loaded ? "revealed" : ""} glass-panel rounded-3xl p-6 shadow-xl shadow-slate-900/10 sm:p-8`}>
             <div className="mb-6 flex items-center justify-between">
               <h3 className="text-lg font-bold text-slate-900">
-                Unified School Pulse
+                {t.hero.pulseTitle}
               </h3>
               <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
-                Live Sync
+                {t.hero.liveSync}
               </span>
             </div>
 
             <div className="space-y-4">
-              <div className="rounded-2xl border border-cyan-200 bg-cyan-50 p-4">
-                <p className="text-sm font-semibold text-cyan-900">
-                  Attendance updates
-                </p>
-                <p className="mt-1 text-sm text-cyan-800">
-                  Teacher marks attendance once, Parent + Admin dashboards
-                  update immediately.
-                </p>
-              </div>
-              <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
-                <p className="text-sm font-semibold text-emerald-900">
-                  Grade visibility
-                </p>
-                <p className="mt-1 text-sm text-emerald-800">
-                  Published exams flow from teacher gradebook to student and
-                  parent portals in real time.
-                </p>
-              </div>
-              <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4">
-                <p className="text-sm font-semibold text-amber-900">
-                  Secure by default
-                </p>
-                <p className="mt-1 text-sm text-amber-800">
-                  Role-based access keeps every record visible only to the right
-                  audience.
-                </p>
-              </div>
+              {[
+                { border: "border-cyan-200", bg: "bg-cyan-50", title: t.hero.attendanceTitle, titleColor: "text-cyan-900", desc: t.hero.attendanceDesc, descColor: "text-cyan-800" },
+                { border: "border-emerald-200", bg: "bg-emerald-50", title: t.hero.gradeTitle, titleColor: "text-emerald-900", desc: t.hero.gradeDesc, descColor: "text-emerald-800" },
+                { border: "border-amber-200", bg: "bg-amber-50", title: t.hero.secureTitle, titleColor: "text-amber-900", desc: t.hero.secureDesc, descColor: "text-amber-800" },
+              ].map((card, i) => (
+                <div
+                  key={i}
+                  className={`hero-reveal ${loaded ? "revealed" : ""} rounded-2xl border ${card.border} ${card.bg} p-4`}
+                  style={{ transitionDelay: `${500 + i * 150}ms` }}
+                >
+                  <p className={`text-sm font-semibold ${card.titleColor}`}>{card.title}</p>
+                  <p className={`mt-1 text-sm ${card.descColor}`}>{card.desc}</p>
+                </div>
+              ))}
             </div>
 
             <div className="mt-6 flex items-center gap-2 text-sm font-semibold text-slate-700">
               <ShieldCheck className="h-4 w-4 text-teal-700" />
-              Powered by Hacker House
+              {t.hero.poweredBy}
             </div>
           </div>
 
-          <div className="animate-drift pointer-events-none absolute -bottom-6 -right-4 rounded-2xl border border-white/90 bg-white/85 px-4 py-2 text-xs font-mono uppercase tracking-widest text-slate-600 shadow-md sm:-right-6">
-            seamless role handoff
+          <div className={`hero-reveal ${loaded ? "revealed" : ""} pointer-events-none absolute -bottom-6 -right-4 rounded-2xl border border-white/90 bg-white/85 px-4 py-2 text-xs font-mono uppercase tracking-widest text-slate-600 shadow-md sm:-right-6 animate-drift`} style={{ transitionDelay: "900ms" }}>
+            {t.hero.roleHandoff}
           </div>
         </div>
       </div>

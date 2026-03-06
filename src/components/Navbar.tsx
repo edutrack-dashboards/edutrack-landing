@@ -1,20 +1,26 @@
 "use client";
 
 import { useState } from "react";
-import { GraduationCap, Menu, X } from "lucide-react";
-
-const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Workflow", href: "#workflow" },
-  { label: "Features", href: "#features" },
-  { label: "About", href: "#about" },
-];
+import { GraduationCap, Globe, Menu, X } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { locale, setLocale, t } = useI18n();
+
+  const navLinks = [
+    { label: t.nav.services, href: "#services" },
+    { label: t.nav.workflow, href: "#workflow" },
+    { label: t.nav.features, href: "#features" },
+    { label: t.nav.about, href: "#about" },
+  ];
+
+  const toggleLocale = () => {
+    setLocale(locale === "en" ? "mn" : "en");
+  };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-5">
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-5 transition-all duration-700 ease-out">
       <div className="mx-auto max-w-7xl rounded-2xl border border-white/70 bg-white/85 shadow-lg shadow-slate-900/5 backdrop-blur-xl">
         <div className="flex h-16 items-center justify-between px-4 sm:px-5">
           <a href="#" className="flex items-center gap-3">
@@ -42,19 +48,27 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden items-center gap-2 md:flex">
+            <button
+              onClick={toggleLocale}
+              className="flex items-center gap-1.5 rounded-lg border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-400 hover:bg-slate-50"
+              aria-label="Switch language"
+            >
+              <Globe className="h-4 w-4" />
+              {locale === "en" ? "MN" : "EN"}
+            </button>
             <a
               href="https://edutrack-manager.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-lg border border-slate-300 px-3.5 py-2 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-400 hover:bg-slate-50"
             >
-              Admin
+              {t.nav.admin}
             </a>
             <a
               href="#services"
               className="rounded-lg bg-teal-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-teal-800"
             >
-              Open Portals
+              {t.nav.openPortals}
             </a>
           </div>
 
@@ -81,13 +95,22 @@ export default function Navbar() {
                 </a>
               ))}
             </div>
-            <a
-              href="#services"
-              onClick={() => setMobileOpen(false)}
-              className="mt-2 block rounded-lg bg-teal-700 px-3 py-2.5 text-center text-sm font-semibold text-white"
-            >
-              Open Portals
-            </a>
+            <div className="mt-2 flex gap-2">
+              <button
+                onClick={toggleLocale}
+                className="flex items-center gap-1.5 rounded-lg border border-slate-300 px-3 py-2.5 text-sm font-semibold text-slate-700"
+              >
+                <Globe className="h-4 w-4" />
+                {locale === "en" ? "MN" : "EN"}
+              </button>
+              <a
+                href="#services"
+                onClick={() => setMobileOpen(false)}
+                className="flex-1 rounded-lg bg-teal-700 px-3 py-2.5 text-center text-sm font-semibold text-white"
+              >
+                {t.nav.openPortals}
+              </a>
+            </div>
           </div>
         )}
       </div>

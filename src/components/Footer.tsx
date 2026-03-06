@@ -1,39 +1,32 @@
-import { GraduationCap } from "lucide-react";
+"use client";
 
-const footerLinks = {
-  Portals: [
-    {
-      label: "Management Portal",
-      href: "https://edutrack-manager.vercel.app/",
-    },
-    {
-      label: "Teacher Portal",
-      href: "https://edutrack-teacher.vercel.app/login",
-    },
-    {
-      label: "Parent Portal",
-      href: "https://edutrack-parent.vercel.app/login",
-    },
-    {
-      label: "Student Portal",
-      href: "https://edutrack-student.vercel.app/login",
-    },
-  ],
-  Product: [
-    { label: "Services", href: "#services" },
-    { label: "Workflow", href: "#workflow" },
-    { label: "Features", href: "#features" },
-    { label: "About", href: "#about" },
-  ],
-  Legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
-    { label: "Security", href: "#" },
-    { label: "Contact", href: "#" },
-  ],
-};
+import { GraduationCap } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 export default function Footer() {
+  const { t } = useI18n();
+
+  const footerLinks = {
+    [t.footer.portals]: [
+      { label: t.footer.managementPortal, href: "https://edutrack-manager.vercel.app/" },
+      { label: t.footer.teacherPortal, href: "https://edutrack-teacher.vercel.app/login" },
+      { label: t.footer.parentPortal, href: "https://edutrack-parent.vercel.app/login" },
+      { label: t.footer.studentPortal, href: "https://edutrack-student.vercel.app/login" },
+    ],
+    [t.footer.product]: [
+      { label: t.nav.services, href: "#services" },
+      { label: t.nav.workflow, href: "#workflow" },
+      { label: t.nav.features, href: "#features" },
+      { label: t.nav.about, href: "#about" },
+    ],
+    [t.footer.legal]: [
+      { label: t.footer.privacyPolicy, href: "#" },
+      { label: t.footer.termsOfService, href: "#" },
+      { label: t.footer.security, href: "#" },
+      { label: t.footer.contact, href: "#" },
+    ],
+  };
+
   return (
     <footer className="border-t border-slate-200 bg-white/80 pb-10 pt-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -48,13 +41,12 @@ export default function Footer() {
                   EduTrack
                 </p>
                 <p className="-mt-0.5 text-xs font-mono uppercase tracking-wider text-slate-500">
-                  education platform suite
+                  {t.footer.subtitle}
                 </p>
               </div>
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-600">
-              Unified operations for administrators, teachers, parents, and
-              students.
+              {t.footer.tagline}
             </p>
           </div>
 
@@ -69,14 +61,8 @@ export default function Footer() {
                     <a
                       href={link.href}
                       className="text-sm text-slate-600 transition-colors hover:text-teal-700"
-                      target={
-                        link.href.startsWith("http") ? "_blank" : undefined
-                      }
-                      rel={
-                        link.href.startsWith("http")
-                          ? "noopener noreferrer"
-                          : undefined
-                      }
+                      target={link.href.startsWith("http") ? "_blank" : undefined}
+                      rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                     >
                       {link.label}
                     </a>
@@ -89,10 +75,10 @@ export default function Footer() {
 
         <div className="mt-10 border-t border-slate-200 pt-6 sm:flex sm:items-center sm:justify-between">
           <p className="text-sm text-slate-500">
-            &copy; {new Date().getFullYear()} EduTrack. All rights reserved.
+            &copy; {new Date().getFullYear()} {t.footer.copyright}
           </p>
           <p className="mt-2 text-sm text-slate-500 sm:mt-0">
-            Powered by Hacker House
+            {t.footer.poweredBy}
           </p>
         </div>
       </div>
