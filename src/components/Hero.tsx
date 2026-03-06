@@ -78,7 +78,7 @@ export default function Hero({ loaded = false }: HeroProps) {
                   className={`hero-word ${loaded ? "revealed" : ""}`}
                   style={{ transitionDelay: `${200 + i * 80}ms` }}
                 >
-                  {word}{" "}
+                  {word}{"\u00A0"}
                 </span>
               ))}
             </h1>

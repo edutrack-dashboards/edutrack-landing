@@ -56,15 +56,7 @@ export default function Navbar() {
               <Globe className="h-4 w-4" />
               {locale === "en" ? "MN" : "EN"}
             </button>
-            <a
-              href="https://edutrack-manager.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-lg border border-slate-300 px-3.5 py-2 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-400 hover:bg-slate-50"
-            >
-              {t.nav.admin}
-            </a>
-            <a
+<a
               href="#services"
               className="rounded-lg bg-teal-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-teal-800"
             >
