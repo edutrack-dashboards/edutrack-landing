@@ -14,10 +14,11 @@ export default function Footer() {
       { label: t.footer.studentPortal, href: "https://edutrack-student.vercel.app/login" },
     ],
     [t.footer.product]: [
-      { label: t.nav.services, href: "#services" },
-      { label: t.nav.workflow, href: "#workflow" },
-      { label: t.nav.features, href: "#features" },
-      { label: t.nav.about, href: "#about" },
+      { label: t.nav.services, href: "/#services" },
+      { label: t.nav.workflow, href: "/#workflow" },
+      { label: t.nav.features, href: "/#features" },
+      { label: t.nav.docs, href: "/docs" },
+      { label: t.nav.changelog, href: "/changelog" },
     ],
     [t.footer.legal]: [
       { label: t.footer.privacyPolicy, href: "#" },

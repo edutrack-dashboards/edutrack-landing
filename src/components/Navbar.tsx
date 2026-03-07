@@ -9,10 +9,11 @@ export default function Navbar() {
   const { locale, setLocale, t } = useI18n();
 
   const navLinks = [
-    { label: t.nav.services, href: "#services" },
-    { label: t.nav.workflow, href: "#workflow" },
-    { label: t.nav.features, href: "#features" },
-    { label: t.nav.about, href: "#about" },
+    { label: t.nav.services, href: "/#services" },
+    { label: t.nav.workflow, href: "/#workflow" },
+    { label: t.nav.features, href: "/#features" },
+    { label: t.nav.docs, href: "/docs" },
+    { label: t.nav.changelog, href: "/changelog" },
   ];
 
   const toggleLocale = () => {
